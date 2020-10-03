@@ -34,6 +34,7 @@
             this.tabControlEx1 = new WindowsFormsCustomControlLibrary.TabControlEx();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ExitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tabControlEx1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,7 +62,7 @@
             this.loadImageButton.Location = new System.Drawing.Point(10, 11);
             this.loadImageButton.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.loadImageButton.Name = "loadImageButton";
-            this.loadImageButton.Size = new System.Drawing.Size(112, 40);
+            this.loadImageButton.Size = new System.Drawing.Size(174, 57);
             this.loadImageButton.TabIndex = 1;
             this.loadImageButton.Text = "画像読み込み";
             this.loadImageButton.UseVisualStyleBackColor = false;
@@ -112,21 +113,35 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 20);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 76);
+            this.tabPage2.Size = new System.Drawing.Size(1852, 971);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.ExitButton.ForeColor = System.Drawing.Color.White;
+            this.ExitButton.Location = new System.Drawing.Point(1676, 11);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(217, 56);
+            this.ExitButton.TabIndex = 3;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = false;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // DrawTestForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.tabControlEx1);
             this.Controls.Add(this.loadImageButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.MinimumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "DrawTestForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DrawTestForm_FormClosing);
             this.Load += new System.EventHandler(this.DrawTestForm_Load);
@@ -146,6 +161,7 @@
         private WindowsFormsCustomControlLibrary.TabControlEx tabControlEx1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
 
