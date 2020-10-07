@@ -126,24 +126,11 @@ namespace WinForms_PictureBoxDraw
             // 背景の消去
             graphics.Clear(pictureBox.BackColor);
 
-            // 補間モード設定
-            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            // 画像の拡大縮小、回転時の変換アルゴリズムを指定
+            graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
 
             // 画像描画
             DrawCommon.GetInstance().DrawImage(ref graphics, m_Bitmap, m_Mat);
-
-
-            // Penで描画
-            Pen p = Pens.Red;
-            for (int X = 0; X < Width; X += 100)
-            {
-                graphics.DrawLine(p, X, 0, X, Height);
-            }
-
-            for (int Y = 0; Y < Height; Y += 100)
-            {
-                graphics.DrawLine(p, 0, Y, Width, Y);
-            }
 
             // 更新
             m_DoubleBuffer.Refresh();
@@ -246,11 +233,6 @@ namespace WinForms_PictureBoxDraw
             }
             // 画像の描画
             RedrawImage();
-        }
-
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
