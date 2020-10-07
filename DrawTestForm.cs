@@ -126,8 +126,8 @@ namespace WinForms_PictureBoxDraw
             // 背景の消去
             graphics.Clear(pictureBox.BackColor);
 
-            // 
-            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            // 画像の拡大縮小、回転時の変換アルゴリズムを指定
+            graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
 
             // 画像描画
             DrawCommon.GetInstance().DrawImage(ref graphics, m_Bitmap, m_Mat);
