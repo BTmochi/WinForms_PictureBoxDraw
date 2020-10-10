@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>WinForms_PictureBoxDraw</RootNamespace>
     <AssemblyName>WinForms_PictureBoxDraw</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -90,6 +90,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\testImage.png" />
+    <None Include="Resources\windowminimize.png" />
+    <None Include="Resources\windowmaximize.png" />
+    <None Include="Resources\windowclose.png" />
+    <None Include="Resources\LoadingLing.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

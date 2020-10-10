@@ -28,7 +28,12 @@ namespace WinForms_PictureBoxDraw
         /// <summary> アフィン変換行列 </summary>
         private Matrix m_Mat;
 
+        /// <summary> マウスホイールスケール値 </summary>
         private const float m_WheelScale = 1.5f;
+
+        /// <summary> マウスクリック位置記憶 </summary>
+        private Point m_MousePoint;
+
 
         /// <summary>
         /// コンストラクタ
@@ -50,6 +55,8 @@ namespace WinForms_PictureBoxDraw
         /// <param name="e"></param>
         private void DrawTestForm_Load(object sender, EventArgs e)
         {
+            Label_Binaryzation.Text = (TrackBar_Binaryzation.Value * 0.01f).ToString("F2");
+
             // 行列の初期化
             m_Mat = new Matrix();
 
@@ -81,29 +88,43 @@ namespace WinForms_PictureBoxDraw
             //ダイアログを表示する
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                Image image = null;
+
                 // ファイルパス取得
                 string imageFile = ($@"{openFileDialog.FileName}");
                 try
                 {
                     // 指定ファイルからImage作成
-                    Image image = Image.FromFile(imageFile);
-
-                    // 基となるBitmapに指定
-                    m_OriginBitmap = (Bitmap)image;
-                    DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Orizin, m_OriginBitmap);
-
-                    // Bitmapの2値化
-                    m_BinaryzationBitmap = (Bitmap)image;
-                    m_BinaryzationBitmap = DrawCommon.GetInstance().CreateNegativeImage(m_BinaryzationBitmap, 0.5f);
-                    DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Binaryzation, m_BinaryzationBitmap);
-
-                    // 描画
-                    pictureBox_Invalidate();
+                    image = Image.FromFile(imageFile);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"画像の読み込みに失敗しました。\n{ex.Message}");
                 }
+
+                if (image != null)
+                {
+                    try
+                    {
+                        // 基となるBitmapに指定
+                        m_OriginBitmap = (Bitmap)image;
+                        DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Orizin, m_OriginBitmap);
+
+                        // Bitmapの2値化
+                        m_BinaryzationBitmap = DrawCommon.GetInstance().CreateNegativeImage(m_OriginBitmap, float.Parse(Label_Binaryzation.Text));
+                        DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Binaryzation, m_BinaryzationBitmap);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show($"画像の処理に失敗しました。\n{ex.Message}");
+                    }
+
+                }
+
+                // 描画
+                pictureBox_Invalidate();
+
             }
         }
 
@@ -239,6 +260,92 @@ namespace WinForms_PictureBoxDraw
             {
                 DrawCommon.GetInstance().DrawImage(e.Graphics, drawBmp, m_Mat);
             }
+        }
+
+        /// <summary>
+        /// 閉じるボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// 最大化ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Maximized_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        /// <summary>
+        /// 最小化ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Minimized_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        /// <summary>
+        /// マウス押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Panel_Header_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                //位置を記憶する
+                m_MousePoint = new Point(e.X, e.Y);
+            }
+        }
+
+        /// <summary>
+        /// マウス移動
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Panel_Header_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                this.Left += e.X - m_MousePoint.X;
+                this.Top += e.Y - m_MousePoint.Y;
+            }
+        }
+
+        /// <summary>
+        /// 2値化ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Binaryzation_Click(object sender, EventArgs e)
+        {
+            m_BinaryzationBitmap = DrawCommon.GetInstance().CreateNegativeImage(m_OriginBitmap, float.Parse(Label_Binaryzation.Text));
+            PictureBox_Binaryzation.Invalidate();
+        }
+
+        /// <summary>
+        /// トラックバー値変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TrackBar_Binaryzation_ValueChanged(object sender, EventArgs e)
+        {
+            Label_Binaryzation.Text = (TrackBar_Binaryzation.Value * 0.01f).ToString("F2");
         }
     }
 }
