@@ -30,13 +30,16 @@
         {
             this.loadImageButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tabControlEx1 = new WindowsFormsCustomControlLibrary.TabControlEx();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControlEx1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.Tab_Pictures = new WindowsFormsCustomControlLibrary.TabControlEx();
+            this.TabPage_Orizin = new System.Windows.Forms.TabPage();
+            this.PictureBox_Orizin = new System.Windows.Forms.PictureBox();
+            this.TabPage_Binarization = new System.Windows.Forms.TabPage();
+            this.PictureBox_Binaryzation = new System.Windows.Forms.PictureBox();
+            this.Tab_Pictures.SuspendLayout();
+            this.TabPage_Orizin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Orizin)).BeginInit();
+            this.TabPage_Binarization.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Binaryzation)).BeginInit();
             this.SuspendLayout();
             // 
             // loadImageButton
@@ -57,95 +60,115 @@
             this.openFileDialog.FileName = "Image";
             this.openFileDialog.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
             // 
-            // tabControlEx1
+            // Tab_Pictures
             // 
-            this.tabControlEx1.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.tabControlEx1.AllowDrop = true;
-            this.tabControlEx1.BackTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.tabControlEx1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.tabControlEx1.ClosingButtonColor = System.Drawing.Color.WhiteSmoke;
-            this.tabControlEx1.ClosingMessage = null;
-            this.tabControlEx1.Controls.Add(this.tabPage1);
-            this.tabControlEx1.Controls.Add(this.tabPage2);
-            this.tabControlEx1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.tabControlEx1.HorizontalLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.tabControlEx1.ItemSize = new System.Drawing.Size(240, 16);
-            this.tabControlEx1.Location = new System.Drawing.Point(12, 73);
-            this.tabControlEx1.Name = "tabControlEx1";
-            this.tabControlEx1.SelectedIndex = 0;
-            this.tabControlEx1.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tabControlEx1.ShowClosingButton = false;
-            this.tabControlEx1.ShowClosingMessage = false;
-            this.tabControlEx1.Size = new System.Drawing.Size(1860, 995);
-            this.tabControlEx1.TabIndex = 2;
-            this.tabControlEx1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Tab_Pictures.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.Tab_Pictures.AllowDrop = true;
+            this.Tab_Pictures.BackTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Tab_Pictures.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Tab_Pictures.ClosingButtonColor = System.Drawing.Color.WhiteSmoke;
+            this.Tab_Pictures.ClosingMessage = null;
+            this.Tab_Pictures.Controls.Add(this.TabPage_Orizin);
+            this.Tab_Pictures.Controls.Add(this.TabPage_Binarization);
+            this.Tab_Pictures.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Tab_Pictures.HorizontalLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.Tab_Pictures.ItemSize = new System.Drawing.Size(240, 16);
+            this.Tab_Pictures.Location = new System.Drawing.Point(12, 73);
+            this.Tab_Pictures.Name = "Tab_Pictures";
+            this.Tab_Pictures.SelectedIndex = 0;
+            this.Tab_Pictures.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Tab_Pictures.ShowClosingButton = false;
+            this.Tab_Pictures.ShowClosingMessage = false;
+            this.Tab_Pictures.Size = new System.Drawing.Size(1860, 995);
+            this.Tab_Pictures.TabIndex = 2;
+            this.Tab_Pictures.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
-            // tabPage1
+            // TabPage_Orizin
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.tabPage1.Controls.Add(this.pictureBox);
-            this.tabPage1.Location = new System.Drawing.Point(4, 20);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1852, 971);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.TabPage_Orizin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.TabPage_Orizin.Controls.Add(this.PictureBox_Orizin);
+            this.TabPage_Orizin.Location = new System.Drawing.Point(4, 20);
+            this.TabPage_Orizin.Name = "TabPage_Orizin";
+            this.TabPage_Orizin.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage_Orizin.Size = new System.Drawing.Size(1852, 971);
+            this.TabPage_Orizin.TabIndex = 0;
+            this.TabPage_Orizin.Text = "オリジナル";
             // 
-            // pictureBox
+            // PictureBox_Orizin
             // 
-            this.pictureBox.BackColor = System.Drawing.Color.White;
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox.Location = new System.Drawing.Point(4, 5);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(955, 600);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.DoubleClick += new System.EventHandler(this.pictureBox_DoubleClick);
-            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            this.PictureBox_Orizin.BackColor = System.Drawing.Color.White;
+            this.PictureBox_Orizin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PictureBox_Orizin.Location = new System.Drawing.Point(5, 5);
+            this.PictureBox_Orizin.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.PictureBox_Orizin.Name = "PictureBox_Orizin";
+            this.PictureBox_Orizin.Size = new System.Drawing.Size(955, 600);
+            this.PictureBox_Orizin.TabIndex = 0;
+            this.PictureBox_Orizin.TabStop = false;
+            this.PictureBox_Orizin.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
+            this.PictureBox_Orizin.DoubleClick += new System.EventHandler(this.pictureBox_DoubleClick);
+            this.PictureBox_Orizin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.PictureBox_Orizin.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.PictureBox_Orizin.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
-            // tabPage2
+            // TabPage_Binarization
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 20);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1852, 971);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.TabPage_Binarization.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.TabPage_Binarization.Controls.Add(this.PictureBox_Binaryzation);
+            this.TabPage_Binarization.Location = new System.Drawing.Point(4, 20);
+            this.TabPage_Binarization.Name = "TabPage_Binarization";
+            this.TabPage_Binarization.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage_Binarization.Size = new System.Drawing.Size(1852, 971);
+            this.TabPage_Binarization.TabIndex = 1;
+            this.TabPage_Binarization.Text = "2値化";
+            // 
+            // PictureBox_Binaryzation
+            // 
+            this.PictureBox_Binaryzation.BackColor = System.Drawing.Color.White;
+            this.PictureBox_Binaryzation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PictureBox_Binaryzation.Location = new System.Drawing.Point(5, 5);
+            this.PictureBox_Binaryzation.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.PictureBox_Binaryzation.Name = "PictureBox_Binaryzation";
+            this.PictureBox_Binaryzation.Size = new System.Drawing.Size(955, 600);
+            this.PictureBox_Binaryzation.TabIndex = 1;
+            this.PictureBox_Binaryzation.TabStop = false;
+            this.PictureBox_Binaryzation.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
+            this.PictureBox_Binaryzation.DoubleClick += new System.EventHandler(this.pictureBox_DoubleClick);
+            this.PictureBox_Binaryzation.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.PictureBox_Binaryzation.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.PictureBox_Binaryzation.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // DrawTestForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(1920, 1080);
-            this.Controls.Add(this.tabControlEx1);
+            this.Controls.Add(this.Tab_Pictures);
             this.Controls.Add(this.loadImageButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.MinimumSize = new System.Drawing.Size(1918, 1048);
             this.Name = "DrawTestForm";
             this.Text = "Form1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DrawTestForm_FormClosing);
             this.Load += new System.EventHandler(this.DrawTestForm_Load);
             this.Resize += new System.EventHandler(this.DrawTestForm_Resize);
-            this.tabControlEx1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.Tab_Pictures.ResumeLayout(false);
+            this.TabPage_Orizin.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Orizin)).EndInit();
+            this.TabPage_Binarization.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Binaryzation)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.PictureBox PictureBox_Orizin;
         private System.Windows.Forms.Button loadImageButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private WindowsFormsCustomControlLibrary.TabControlEx tabControlEx1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private WindowsFormsCustomControlLibrary.TabControlEx Tab_Pictures;
+        private System.Windows.Forms.TabPage TabPage_Orizin;
+        private System.Windows.Forms.TabPage TabPage_Binarization;
+        private System.Windows.Forms.PictureBox PictureBox_Binaryzation;
     }
 }
 

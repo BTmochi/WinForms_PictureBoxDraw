@@ -13,14 +13,11 @@ namespace WinForms_PictureBoxDraw
 {
     public partial class DrawTestForm : Form
     {
-        /// <summary> ダブルバッファオブジェクト </summary>
-        private DoubleBuffer m_DoubleBuffer;
+        /// <summary> 基のBitmap </summary> 
+        private Bitmap m_OriginBitmap = null;
 
-        /// <summary> 表示Bitmap </summary> 
-        private Bitmap m_Bitmap = null;
-
-        /// <summary> 描画用Graphics </summary>
-        Graphics graphics;
+        /// <summary> 2値化Bitmap </summary> 
+        private Bitmap m_BinaryzationBitmap = null;
 
         /// <summary> マウスダウンフラグ </summary>
         private bool m_MouseDownFlg = false;
@@ -39,6 +36,11 @@ namespace WinForms_PictureBoxDraw
         public DrawTestForm()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.DoubleBuffer, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
         }
 
         /// <summary>
@@ -48,17 +50,13 @@ namespace WinForms_PictureBoxDraw
         /// <param name="e"></param>
         private void DrawTestForm_Load(object sender, EventArgs e)
         {
-            // Graphicsオブジェクト作成
-            //CreateGraphics(pictureBox, ref graphics);
-
-            // DoubleBufferオブジェクトの作成
-            m_DoubleBuffer = new DoubleBuffer(pictureBox);
-
             // 行列の初期化
             m_Mat = new Matrix();
 
             // ホイールイベントの追加
-            this.pictureBox.MouseWheel
+            this.PictureBox_Orizin.MouseWheel
+                += new MouseEventHandler(this.pictureBox_MouseWheel);
+            this.PictureBox_Binaryzation.MouseWheel
                 += new MouseEventHandler(this.pictureBox_MouseWheel);
         }
 
@@ -69,25 +67,8 @@ namespace WinForms_PictureBoxDraw
         /// <param name="e"></param>
         private void DrawTestForm_Resize(object sender, EventArgs e)
         {
-            // Graphicsオブジェクト作成
-            //CreateGraphics(pictureBox, ref graphics);
-
-            // リサイズ時は再確保
-            if (m_DoubleBuffer != null) m_DoubleBuffer.Dispose();
-            m_DoubleBuffer = new DoubleBuffer(pictureBox);
-
-            RedrawImage();
-        }
-
-        /// <summary>
-        /// フォームクローズ
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DrawTestForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // 解放
-            m_DoubleBuffer.Dispose();
+            // 描画
+            pictureBox_Invalidate();
         }
 
         /// <summary>
@@ -100,40 +81,30 @@ namespace WinForms_PictureBoxDraw
             //ダイアログを表示する
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                // ファイルパス取得
                 string imageFile = ($@"{openFileDialog.FileName}");
                 try
                 {
+                    // 指定ファイルからImage作成
                     Image image = Image.FromFile(imageFile);
-                    m_Bitmap = (Bitmap)image;
-                    DrawCommon.GetInstance().ZoomFit(ref m_Mat, pictureBox, m_Bitmap);
-                    RedrawImage();
+
+                    // 基となるBitmapに指定
+                    m_OriginBitmap = (Bitmap)image;
+                    DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Orizin, m_OriginBitmap);
+
+                    // Bitmapの2値化
+                    m_BinaryzationBitmap = (Bitmap)image;
+                    m_BinaryzationBitmap = DrawCommon.GetInstance().CreateNegativeImage(m_BinaryzationBitmap, 0.5f);
+                    DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Binaryzation, m_BinaryzationBitmap);
+
+                    // 描画
+                    pictureBox_Invalidate();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"画像の読み込みに失敗しました。\n{ex.Message}");
                 }
             }
-        }
-
-        /// <summary>
-        /// 画像の描画
-        /// </summary>
-        private void RedrawImage()
-        {
-            // Graphicsオブジェクトの取得
-            graphics = m_DoubleBuffer.getGraphics;
-
-            // 背景の消去
-            graphics.Clear(pictureBox.BackColor);
-
-            // 画像の拡大縮小、回転時の変換アルゴリズムを指定
-            graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-
-            // 画像描画
-            DrawCommon.GetInstance().DrawImage(ref graphics, m_Bitmap, m_Mat);
-
-            // 更新
-            m_DoubleBuffer.Refresh();
         }
 
         /// <summary>
@@ -144,10 +115,10 @@ namespace WinForms_PictureBoxDraw
         private void pictureBox_DoubleClick(object sender, EventArgs e)
         {
             // 画像をピクチャボックスに合わせる
-            DrawCommon.GetInstance().ZoomFit(ref m_Mat, pictureBox, m_Bitmap);
+            DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Orizin, m_OriginBitmap);
 
             // 画像の描画
-            RedrawImage();
+            ((PictureBox)sender).Invalidate();
         }
 
         /// <summary>
@@ -163,7 +134,7 @@ namespace WinForms_PictureBoxDraw
                 // 画像の移動
                 m_Mat.Translate(e.X - m_OldPoint.X, e.Y - m_OldPoint.Y, MatrixOrder.Append);
                 // 画像の描画
-                RedrawImage();
+                ((PictureBox)sender).Invalidate();
 
                 // ポインタ位置の保持
                 m_OldPoint.X = e.X;
@@ -189,7 +160,7 @@ namespace WinForms_PictureBoxDraw
         /// <param name="e"></param>
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            pictureBox.Focus();
+            ((PictureBox)sender).Focus();
             m_OldPoint.X = e.X;
             m_OldPoint.Y = e.Y;
 
@@ -232,7 +203,42 @@ namespace WinForms_PictureBoxDraw
                 }
             }
             // 画像の描画
-            RedrawImage();
+            ((PictureBox)sender).Invalidate();
+        }
+
+        /// <summary>
+        /// PictureBoxの描画
+        /// </summary>
+        private void pictureBox_Invalidate()
+        {
+            PictureBox_Orizin.Invalidate();
+            PictureBox_Binaryzation.Invalidate();
+        }
+
+        /// <summary>
+        /// 描画イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            Bitmap drawBmp = null ;
+
+            switch (((PictureBox)sender).Name)
+            {
+                case nameof(PictureBox_Orizin):
+                    drawBmp = m_OriginBitmap;
+                    break;
+                case nameof(PictureBox_Binaryzation):
+                    drawBmp = m_BinaryzationBitmap;
+                    break;
+            }
+
+            // 画像描画
+            if (drawBmp != null)
+            {
+                DrawCommon.GetInstance().DrawImage(e.Graphics, drawBmp, m_Mat);
+            }
         }
     }
 }
