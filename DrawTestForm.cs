@@ -347,5 +347,22 @@ namespace WinForms_PictureBoxDraw
         {
             Label_Binaryzation.Text = (TrackBar_Binaryzation.Value * 0.01f).ToString("F2");
         }
+
+        /// <summary>
+        /// ヘッダダブルクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Panel_Header_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
     }
 }

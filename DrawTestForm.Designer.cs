@@ -67,6 +67,7 @@
             this.Panel_Header.Name = "Panel_Header";
             this.Panel_Header.Size = new System.Drawing.Size(1290, 32);
             this.Panel_Header.TabIndex = 4;
+            this.Panel_Header.DoubleClick += new System.EventHandler(this.Panel_Header_DoubleClick);
             this.Panel_Header.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel_Header_MouseDown);
             this.Panel_Header.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel_Header_MouseMove);
             // 
@@ -132,6 +133,9 @@
             // 
             this.Tab_Pictures.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.Tab_Pictures.AllowDrop = true;
+            this.Tab_Pictures.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Tab_Pictures.BackTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(6)))), ((int)(((byte)(6)))));
             this.Tab_Pictures.BorderColor = System.Drawing.Color.Transparent;
             this.Tab_Pictures.ClosingButtonColor = System.Drawing.Color.WhiteSmoke;
@@ -237,7 +241,7 @@
             this.Label_Binaryzation.ForeColor = System.Drawing.Color.White;
             this.Label_Binaryzation.Location = new System.Drawing.Point(1170, 92);
             this.Label_Binaryzation.Name = "Label_Binaryzation";
-            this.Label_Binaryzation.Size = new System.Drawing.Size(87, 45);
+            this.Label_Binaryzation.Size = new System.Drawing.Size(56, 30);
             this.Label_Binaryzation.TabIndex = 3;
             this.Label_Binaryzation.Text = "0.00";
             // 
@@ -246,7 +250,7 @@
             this.TrackBar_Binaryzation.Location = new System.Drawing.Point(976, 20);
             this.TrackBar_Binaryzation.Maximum = 100;
             this.TrackBar_Binaryzation.Name = "TrackBar_Binaryzation";
-            this.TrackBar_Binaryzation.Size = new System.Drawing.Size(298, 69);
+            this.TrackBar_Binaryzation.Size = new System.Drawing.Size(298, 45);
             this.TrackBar_Binaryzation.TabIndex = 2;
             this.TrackBar_Binaryzation.TickFrequency = 10;
             this.TrackBar_Binaryzation.Value = 50;
