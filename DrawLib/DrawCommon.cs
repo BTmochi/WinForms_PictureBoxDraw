@@ -86,9 +86,10 @@ namespace DrawLib
         /// <param name="mat">変換行列</param>
         /// <param name="pic">描画先のPictureBox</param>
         /// <param name="bmp">ビットマップ</param>
-        public void ZoomFit(ref Matrix mat, PictureBox pic, Bitmap bmp)
+        /// <returns>成否</returns>
+        public bool ZoomFit(ref Matrix mat, PictureBox pic, Bitmap bmp)
         {
-            if (bmp == null) return;
+            if (bmp == null) return false;
 
             // アフィン変換行列の初期化（単位行列へ）
             mat.Reset();
@@ -117,6 +118,7 @@ namespace DrawLib
                 // 左上に移動
                 mat.Translate(0f, 0f, MatrixOrder.Append);
             }
+            return true;
         }
 
         /// <summary>

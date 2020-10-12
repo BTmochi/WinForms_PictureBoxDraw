@@ -33,6 +33,9 @@
             this.Button_Minimized = new System.Windows.Forms.Button();
             this.Button_Maximized = new System.Windows.Forms.Button();
             this.Button_Close = new System.Windows.Forms.Button();
+            this.Panel_Loading = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PictureBox_Loading = new System.Windows.Forms.PictureBox();
             this.Tab_Pictures = new WindowsFormsCustomControlLibrary.TabControlEx();
             this.TabPage_Orizin = new System.Windows.Forms.TabPage();
             this.PictureBox_Orizin = new System.Windows.Forms.PictureBox();
@@ -43,6 +46,8 @@
             this.TrackBar_Binaryzation = new System.Windows.Forms.TrackBar();
             this.PictureBox_Binaryzation = new System.Windows.Forms.PictureBox();
             this.Panel_Header.SuspendLayout();
+            this.Panel_Loading.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Loading)).BeginInit();
             this.Tab_Pictures.SuspendLayout();
             this.TabPage_Orizin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Orizin)).BeginInit();
@@ -129,6 +134,38 @@
             this.Button_Close.UseVisualStyleBackColor = false;
             this.Button_Close.Click += new System.EventHandler(this.Button_Close_Click);
             // 
+            // Panel_Loading
+            // 
+            this.Panel_Loading.Controls.Add(this.label1);
+            this.Panel_Loading.Controls.Add(this.PictureBox_Loading);
+            this.Panel_Loading.Location = new System.Drawing.Point(413, 47);
+            this.Panel_Loading.Name = "Panel_Loading";
+            this.Panel_Loading.Size = new System.Drawing.Size(334, 199);
+            this.Panel_Loading.TabIndex = 5;
+            this.Panel_Loading.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("メイリオ", 15F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(127, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 30);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "処理中";
+            // 
+            // PictureBox_Loading
+            // 
+            this.PictureBox_Loading.BackgroundImage = global::WinForms_PictureBoxDraw.Properties.Resources.LoadingLing;
+            this.PictureBox_Loading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PictureBox_Loading.Location = new System.Drawing.Point(102, 48);
+            this.PictureBox_Loading.Name = "PictureBox_Loading";
+            this.PictureBox_Loading.Size = new System.Drawing.Size(128, 128);
+            this.PictureBox_Loading.TabIndex = 0;
+            this.PictureBox_Loading.TabStop = false;
+            this.PictureBox_Loading.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox_Loading_Paint);
+            // 
             // Tab_Pictures
             // 
             this.Tab_Pictures.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -146,13 +183,13 @@
             this.Tab_Pictures.HeaderColor = System.Drawing.Color.Transparent;
             this.Tab_Pictures.HorizontalLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.Tab_Pictures.ItemSize = new System.Drawing.Size(240, 16);
-            this.Tab_Pictures.Location = new System.Drawing.Point(0, 65);
+            this.Tab_Pictures.Location = new System.Drawing.Point(0, 252);
             this.Tab_Pictures.Name = "Tab_Pictures";
             this.Tab_Pictures.SelectedIndex = 0;
             this.Tab_Pictures.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Tab_Pictures.ShowClosingButton = false;
             this.Tab_Pictures.ShowClosingMessage = false;
-            this.Tab_Pictures.Size = new System.Drawing.Size(1290, 657);
+            this.Tab_Pictures.Size = new System.Drawing.Size(1290, 646);
             this.Tab_Pictures.TabIndex = 2;
             this.Tab_Pictures.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
@@ -164,7 +201,7 @@
             this.TabPage_Orizin.Location = new System.Drawing.Point(4, 20);
             this.TabPage_Orizin.Name = "TabPage_Orizin";
             this.TabPage_Orizin.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Orizin.Size = new System.Drawing.Size(1282, 633);
+            this.TabPage_Orizin.Size = new System.Drawing.Size(1282, 622);
             this.TabPage_Orizin.TabIndex = 0;
             this.TabPage_Orizin.Text = "オリジナル";
             // 
@@ -212,7 +249,7 @@
             this.TabPage_Binarization.Location = new System.Drawing.Point(4, 20);
             this.TabPage_Binarization.Name = "TabPage_Binarization";
             this.TabPage_Binarization.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Binarization.Size = new System.Drawing.Size(1282, 633);
+            this.TabPage_Binarization.Size = new System.Drawing.Size(1282, 622);
             this.TabPage_Binarization.TabIndex = 1;
             this.TabPage_Binarization.Text = "2値化";
             // 
@@ -277,7 +314,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(6)))), ((int)(((byte)(6)))));
-            this.ClientSize = new System.Drawing.Size(1290, 724);
+            this.ClientSize = new System.Drawing.Size(1290, 900);
+            this.Controls.Add(this.Panel_Loading);
             this.Controls.Add(this.Panel_Header);
             this.Controls.Add(this.Tab_Pictures);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -287,6 +325,9 @@
             this.Load += new System.EventHandler(this.DrawTestForm_Load);
             this.Resize += new System.EventHandler(this.DrawTestForm_Resize);
             this.Panel_Header.ResumeLayout(false);
+            this.Panel_Loading.ResumeLayout(false);
+            this.Panel_Loading.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Loading)).EndInit();
             this.Tab_Pictures.ResumeLayout(false);
             this.TabPage_Orizin.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Orizin)).EndInit();
@@ -314,6 +355,9 @@
         private System.Windows.Forms.TrackBar TrackBar_Binaryzation;
         private System.Windows.Forms.Label Label_Binaryzation;
         private System.Windows.Forms.Button Button_Binaryzation;
+        private System.Windows.Forms.Panel Panel_Loading;
+        private System.Windows.Forms.PictureBox PictureBox_Loading;
+        private System.Windows.Forms.Label label1;
     }
 }
 

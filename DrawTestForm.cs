@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DrawLib;
 
@@ -18,6 +19,9 @@ namespace WinForms_PictureBoxDraw
 
         /// <summary> 2値化Bitmap </summary> 
         private Bitmap m_BinaryzationBitmap = null;
+
+        /// <summary> アニメーションBitmap </summary>
+        private Bitmap animatedImage;
 
         /// <summary> マウスダウンフラグ </summary>
         private bool m_MouseDownFlg = false;
@@ -56,6 +60,8 @@ namespace WinForms_PictureBoxDraw
         private void DrawTestForm_Load(object sender, EventArgs e)
         {
             Label_Binaryzation.Text = (TrackBar_Binaryzation.Value * 0.01f).ToString("F2");
+
+            animatedImage = (Bitmap)PictureBox_Loading.Image;
 
             // 行列の初期化
             m_Mat = new Matrix();
@@ -101,26 +107,23 @@ namespace WinForms_PictureBoxDraw
                 {
                     MessageBox.Show($"画像の読み込みに失敗しました。\n{ex.Message}");
                 }
-
+                
                 if (image != null)
                 {
+                    Panel_Loading.Visible = true;
+                    Panel_Loading.Invalidate();                   
                     try
                     {
-                        // 基となるBitmapに指定
                         m_OriginBitmap = (Bitmap)image;
                         DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Orizin, m_OriginBitmap);
-
-                        // Bitmapの2値化
-                        m_BinaryzationBitmap = DrawCommon.GetInstance().CreateNegativeImage(m_OriginBitmap, float.Parse(Label_Binaryzation.Text));
-                        DrawCommon.GetInstance().ZoomFit(ref m_Mat, PictureBox_Binaryzation, m_BinaryzationBitmap);
                     }
                     catch (Exception ex)
                     {
 
                         MessageBox.Show($"画像の処理に失敗しました。\n{ex.Message}");
                     }
-
                 }
+                Panel_Loading.Visible = false;
 
                 // 描画
                 pictureBox_Invalidate();
@@ -334,8 +337,11 @@ namespace WinForms_PictureBoxDraw
         /// <param name="e"></param>
         private void Button_Binaryzation_Click(object sender, EventArgs e)
         {
-            m_BinaryzationBitmap = DrawCommon.GetInstance().CreateNegativeImage(m_OriginBitmap, float.Parse(Label_Binaryzation.Text));
-            PictureBox_Binaryzation.Invalidate();
+            if (m_OriginBitmap != null)
+            {
+                m_BinaryzationBitmap = DrawCommon.GetInstance().CreateNegativeImage(m_OriginBitmap, float.Parse(Label_Binaryzation.Text));
+                PictureBox_Binaryzation.Invalidate();
+            }
         }
 
         /// <summary>
@@ -363,6 +369,20 @@ namespace WinForms_PictureBoxDraw
             {
                 this.WindowState = FormWindowState.Maximized;
             }
+        }
+
+
+        private void Image_FrameChanged(object o, EventArgs e)
+        {
+            //Paintイベントハンドラを呼び出す
+            this.Invalidate();
+        }
+        private void PictureBox_Loading_Paint(object sender, PaintEventArgs e)
+        {
+            //フレームを進める
+            ImageAnimator.UpdateFrames(animatedImage);
+            //画像の表示
+            e.Graphics.DrawImage(animatedImage, 0, 0);
         }
     }
 }
