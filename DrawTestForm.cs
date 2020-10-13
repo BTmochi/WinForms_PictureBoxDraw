@@ -60,9 +60,7 @@ namespace WinForms_PictureBoxDraw
         private void DrawTestForm_Load(object sender, EventArgs e)
         {
             Label_Binaryzation.Text = (TrackBar_Binaryzation.Value * 0.01f).ToString("F2");
-
-            animatedImage = (Bitmap)PictureBox_Loading.Image;
-
+            
             // 行列の初期化
             m_Mat = new Matrix();
 
@@ -109,9 +107,7 @@ namespace WinForms_PictureBoxDraw
                 }
                 
                 if (image != null)
-                {
-                    Panel_Loading.Visible = true;
-                    Panel_Loading.Invalidate();                   
+                {                
                     try
                     {
                         m_OriginBitmap = (Bitmap)image;
@@ -123,7 +119,6 @@ namespace WinForms_PictureBoxDraw
                         MessageBox.Show($"画像の処理に失敗しました。\n{ex.Message}");
                     }
                 }
-                Panel_Loading.Visible = false;
 
                 // 描画
                 pictureBox_Invalidate();

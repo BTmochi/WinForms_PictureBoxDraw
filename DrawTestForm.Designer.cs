@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.Panel_Header = new System.Windows.Forms.Panel();
             this.Button_Minimized = new System.Windows.Forms.Button();
             this.Button_Maximized = new System.Windows.Forms.Button();
             this.Button_Close = new System.Windows.Forms.Button();
-            this.Panel_Loading = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.PictureBox_Loading = new System.Windows.Forms.PictureBox();
             this.Tab_Pictures = new WindowsFormsCustomControlLibrary.TabControlEx();
             this.TabPage_Orizin = new System.Windows.Forms.TabPage();
             this.PictureBox_Orizin = new System.Windows.Forms.PictureBox();
@@ -45,15 +47,22 @@
             this.Label_Binaryzation = new System.Windows.Forms.Label();
             this.TrackBar_Binaryzation = new System.Windows.Forms.TrackBar();
             this.PictureBox_Binaryzation = new System.Windows.Forms.PictureBox();
+            this.tabPage_Chart = new System.Windows.Forms.TabPage();
+            this.TestChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label_BMP = new System.Windows.Forms.Label();
+            this.label_Blank = new System.Windows.Forms.Label();
+            this.label_Rulud = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Panel_Header.SuspendLayout();
-            this.Panel_Loading.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Loading)).BeginInit();
             this.Tab_Pictures.SuspendLayout();
             this.TabPage_Orizin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Orizin)).BeginInit();
             this.TabPage_Binarization.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Binaryzation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Binaryzation)).BeginInit();
+            this.tabPage_Chart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -134,38 +143,6 @@
             this.Button_Close.UseVisualStyleBackColor = false;
             this.Button_Close.Click += new System.EventHandler(this.Button_Close_Click);
             // 
-            // Panel_Loading
-            // 
-            this.Panel_Loading.Controls.Add(this.label1);
-            this.Panel_Loading.Controls.Add(this.PictureBox_Loading);
-            this.Panel_Loading.Location = new System.Drawing.Point(413, 47);
-            this.Panel_Loading.Name = "Panel_Loading";
-            this.Panel_Loading.Size = new System.Drawing.Size(334, 199);
-            this.Panel_Loading.TabIndex = 5;
-            this.Panel_Loading.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("メイリオ", 15F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(127, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 30);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "処理中";
-            // 
-            // PictureBox_Loading
-            // 
-            this.PictureBox_Loading.BackgroundImage = global::WinForms_PictureBoxDraw.Properties.Resources.LoadingLing;
-            this.PictureBox_Loading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PictureBox_Loading.Location = new System.Drawing.Point(102, 48);
-            this.PictureBox_Loading.Name = "PictureBox_Loading";
-            this.PictureBox_Loading.Size = new System.Drawing.Size(128, 128);
-            this.PictureBox_Loading.TabIndex = 0;
-            this.PictureBox_Loading.TabStop = false;
-            this.PictureBox_Loading.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox_Loading_Paint);
-            // 
             // Tab_Pictures
             // 
             this.Tab_Pictures.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -179,17 +156,18 @@
             this.Tab_Pictures.ClosingMessage = null;
             this.Tab_Pictures.Controls.Add(this.TabPage_Orizin);
             this.Tab_Pictures.Controls.Add(this.TabPage_Binarization);
+            this.Tab_Pictures.Controls.Add(this.tabPage_Chart);
             this.Tab_Pictures.Font = new System.Drawing.Font("メイリオ", 12F);
             this.Tab_Pictures.HeaderColor = System.Drawing.Color.Transparent;
             this.Tab_Pictures.HorizontalLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.Tab_Pictures.ItemSize = new System.Drawing.Size(240, 16);
-            this.Tab_Pictures.Location = new System.Drawing.Point(0, 252);
+            this.Tab_Pictures.Location = new System.Drawing.Point(0, 38);
             this.Tab_Pictures.Name = "Tab_Pictures";
             this.Tab_Pictures.SelectedIndex = 0;
             this.Tab_Pictures.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Tab_Pictures.ShowClosingButton = false;
             this.Tab_Pictures.ShowClosingMessage = false;
-            this.Tab_Pictures.Size = new System.Drawing.Size(1290, 646);
+            this.Tab_Pictures.Size = new System.Drawing.Size(1290, 860);
             this.Tab_Pictures.TabIndex = 2;
             this.Tab_Pictures.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
@@ -201,7 +179,7 @@
             this.TabPage_Orizin.Location = new System.Drawing.Point(4, 20);
             this.TabPage_Orizin.Name = "TabPage_Orizin";
             this.TabPage_Orizin.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Orizin.Size = new System.Drawing.Size(1282, 622);
+            this.TabPage_Orizin.Size = new System.Drawing.Size(1282, 836);
             this.TabPage_Orizin.TabIndex = 0;
             this.TabPage_Orizin.Text = "オリジナル";
             // 
@@ -249,7 +227,7 @@
             this.TabPage_Binarization.Location = new System.Drawing.Point(4, 20);
             this.TabPage_Binarization.Name = "TabPage_Binarization";
             this.TabPage_Binarization.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Binarization.Size = new System.Drawing.Size(1282, 622);
+            this.TabPage_Binarization.Size = new System.Drawing.Size(1282, 836);
             this.TabPage_Binarization.TabIndex = 1;
             this.TabPage_Binarization.Text = "2値化";
             // 
@@ -309,13 +287,135 @@
             this.PictureBox_Binaryzation.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             this.PictureBox_Binaryzation.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
+            // tabPage_Chart
+            // 
+            this.tabPage_Chart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(6)))), ((int)(((byte)(6)))));
+            this.tabPage_Chart.Controls.Add(this.panel1);
+            this.tabPage_Chart.Location = new System.Drawing.Point(4, 20);
+            this.tabPage_Chart.Name = "tabPage_Chart";
+            this.tabPage_Chart.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Chart.Size = new System.Drawing.Size(1282, 836);
+            this.tabPage_Chart.TabIndex = 2;
+            this.tabPage_Chart.Text = "チャート";
+            // 
+            // TestChart
+            // 
+            this.TestChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(6)))), ((int)(((byte)(6)))));
+            chartArea2.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.None;
+            chartArea2.AxisX.Interval = 1D;
+            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisY.Interval = 2D;
+            chartArea2.AxisY.LabelStyle.Enabled = false;
+            chartArea2.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            chartArea2.AxisY.MajorTickMark.Enabled = false;
+            chartArea2.AxisY.Maximum = 6D;
+            chartArea2.AxisY.Minimum = 0D;
+            chartArea2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(6)))), ((int)(((byte)(6)))));
+            chartArea2.BorderColor = System.Drawing.Color.White;
+            chartArea2.Name = "ChartArea1";
+            this.TestChart.ChartAreas.Add(chartArea2);
+            legend2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(6)))), ((int)(((byte)(6)))));
+            legend2.ForeColor = System.Drawing.Color.White;
+            legend2.HeaderSeparatorColor = System.Drawing.Color.White;
+            legend2.ItemColumnSeparatorColor = System.Drawing.Color.White;
+            legend2.Name = "Legend1";
+            legend2.TitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            legend2.TitleForeColor = System.Drawing.Color.White;
+            legend2.TitleSeparatorColor = System.Drawing.Color.White;
+            this.TestChart.Legends.Add(legend2);
+            this.TestChart.Location = new System.Drawing.Point(59, 0);
+            this.TestChart.Name = "TestChart";
+            this.TestChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.Legend = "Legend1";
+            series4.MarkerBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(136)))), ((int)(((byte)(0)))));
+            series4.MarkerBorderWidth = 3;
+            series4.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(136)))), ((int)(((byte)(0)))));
+            series4.MarkerSize = 10;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series4.Name = "BMP";
+            series4.YValuesPerPoint = 6;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series5.Legend = "Legend1";
+            series5.MarkerBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(159)))), ((int)(((byte)(214)))));
+            series5.MarkerBorderWidth = 3;
+            series5.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(159)))), ((int)(((byte)(214)))));
+            series5.MarkerSize = 10;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series5.Name = "空白";
+            series5.YValuesPerPoint = 6;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Legend = "Legend1";
+            series6.MarkerBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(51)))), ((int)(((byte)(204)))));
+            series6.MarkerBorderWidth = 3;
+            series6.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(51)))), ((int)(((byte)(204)))));
+            series6.MarkerSize = 10;
+            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series6.Name = "罫線";
+            series6.YValuesPerPoint = 6;
+            this.TestChart.Series.Add(series4);
+            this.TestChart.Series.Add(series5);
+            this.TestChart.Series.Add(series6);
+            this.TestChart.Size = new System.Drawing.Size(742, 308);
+            this.TestChart.TabIndex = 0;
+            this.TestChart.Text = "chart1";
+            // 
+            // label_BMP
+            // 
+            this.label_BMP.AutoSize = true;
+            this.label_BMP.ForeColor = System.Drawing.Color.White;
+            this.label_BMP.Location = new System.Drawing.Point(39, 52);
+            this.label_BMP.Name = "label_BMP";
+            this.label_BMP.Size = new System.Drawing.Size(44, 24);
+            this.label_BMP.TabIndex = 1;
+            this.label_BMP.Text = "BMP";
+            // 
+            // label_Blank
+            // 
+            this.label_Blank.AutoSize = true;
+            this.label_Blank.ForeColor = System.Drawing.Color.White;
+            this.label_Blank.Location = new System.Drawing.Point(39, 133);
+            this.label_Blank.Name = "label_Blank";
+            this.label_Blank.Size = new System.Drawing.Size(42, 24);
+            this.label_Blank.TabIndex = 2;
+            this.label_Blank.Text = "空白";
+            // 
+            // label_Rulud
+            // 
+            this.label_Rulud.AutoSize = true;
+            this.label_Rulud.ForeColor = System.Drawing.Color.White;
+            this.label_Rulud.Location = new System.Drawing.Point(39, 221);
+            this.label_Rulud.Name = "label_Rulud";
+            this.label_Rulud.Size = new System.Drawing.Size(42, 24);
+            this.label_Rulud.TabIndex = 3;
+            this.label_Rulud.Text = "罫線";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label_Rulud);
+            this.panel1.Controls.Add(this.label_BMP);
+            this.panel1.Controls.Add(this.label_Blank);
+            this.panel1.Controls.Add(this.TestChart);
+            this.panel1.Location = new System.Drawing.Point(216, 178);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(790, 309);
+            this.panel1.TabIndex = 4;
+            // 
             // DrawTestForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(6)))), ((int)(((byte)(6)))));
             this.ClientSize = new System.Drawing.Size(1290, 900);
-            this.Controls.Add(this.Panel_Loading);
             this.Controls.Add(this.Panel_Header);
             this.Controls.Add(this.Tab_Pictures);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -325,9 +425,6 @@
             this.Load += new System.EventHandler(this.DrawTestForm_Load);
             this.Resize += new System.EventHandler(this.DrawTestForm_Resize);
             this.Panel_Header.ResumeLayout(false);
-            this.Panel_Loading.ResumeLayout(false);
-            this.Panel_Loading.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Loading)).EndInit();
             this.Tab_Pictures.ResumeLayout(false);
             this.TabPage_Orizin.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Orizin)).EndInit();
@@ -335,6 +432,10 @@
             this.TabPage_Binarization.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackBar_Binaryzation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Binaryzation)).EndInit();
+            this.tabPage_Chart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -355,9 +456,12 @@
         private System.Windows.Forms.TrackBar TrackBar_Binaryzation;
         private System.Windows.Forms.Label Label_Binaryzation;
         private System.Windows.Forms.Button Button_Binaryzation;
-        private System.Windows.Forms.Panel Panel_Loading;
-        private System.Windows.Forms.PictureBox PictureBox_Loading;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage_Chart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart TestChart;
+        private System.Windows.Forms.Label label_Rulud;
+        private System.Windows.Forms.Label label_Blank;
+        private System.Windows.Forms.Label label_BMP;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
